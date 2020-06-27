@@ -1,0 +1,58 @@
+{
+  "name": "ProjetDictee",
+  "version": "0.0.1",
+  "description": "Défi de création d'un logiciel de dictée automatique en 24h (projet initial)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "debug": "electron . --debug",
+    "jsx": "npx babel jsx --watch --out-dir src/react-components",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dicosaedrique/ProjetDictee.git"
+  },
+  "keywords": [
+    "electron",
+    "nodejs",
+    "dicosaedrique"
+  ],
+  "author": "Antoine Bouabana (Dicosaedrique)",
+  "license": "MIT License",
+  "homepage": "https://github.com/Dicosaedrique/ProjetDictee#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "electron": "^8.0.1",
+    "electron-builder": "^22.3.2"
+  },
+  "dependencies": {
+    "electron-settings": "^3.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router": "^5.1.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "build": {
+    "appId": "com.electron.projet_dictee",
+    "productName": "Projet Dictée (défi en 24h) by Dicosaedrique",
+    "mac": {
+      "category": "com.electron.projet_dictee"
+    },
+    "nsis": {
+      "oneClick": true
+  	},
+	"asarUnpack" : ["data"]
+  }
+}
