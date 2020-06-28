@@ -1,5 +1,14 @@
+import React from 'react';
+import { Router } from 'react-router';
+import { createMemoryHistory } from 'history';
 
-class ReactApp extends React.Component
+import Switch from 'components/Switch';
+import Route from 'components/Route';
+
+import HomePage from 'pages/HomePage';
+
+
+export default class ReactApp extends React.Component
 {
 	constructor(props)
 	{
@@ -36,5 +45,3 @@ class ReactApp extends React.Component
 		);
 	}
 }
-
-exports.ReactApp = ReactApp;

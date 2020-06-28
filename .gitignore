@@ -109,3 +109,6 @@ dist/
 
 # Dossier de data
 data/
+
+# Le bundle JS
+bundle/

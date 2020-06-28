@@ -1,14 +1,16 @@
+import React, { useEffect } from 'react';
+import { Route as ReactRoute } from 'react-router';
 
-var { useEffect } = require('react');
+import { useLocation } from 'react-router';
 
-function Route({ children , ...routeProps})
+export default function Route({ children , ...routeProps})
 {
     return (
         <ReactRoute {...routeProps}>
-            <React.Fragment>
+            <>
                 {routeProps.scrollTop && <ScrollToTop />}
                 {children}
-            </React.Fragment>
+            </>
         </ReactRoute>
     );
 }
@@ -24,6 +26,3 @@ function ScrollToTop() {
 
   return null;
 }
-
-
-exports.Route = Route;

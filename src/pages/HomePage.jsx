@@ -1,4 +1,6 @@
-// props.history.push('/');
+import React from 'react';
+
+import { withHistory } from 'components/WithHistory';
 
 class HomePage extends React.Component
 {
@@ -21,4 +23,4 @@ class HomePage extends React.Component
 	}
 }
 
-exports.HomePage = withHistory(HomePage);
+export default withHistory(HomePage);

@@ -2,11 +2,12 @@
   "name": "ProjetDictee",
   "version": "0.0.1",
   "description": "Défi de création d'un logiciel de dictée automatique en 24h (projet initial)",
+  "private": true,
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "debug": "electron . --debug",
-    "jsx": "npx babel jsx --watch --out-dir src/react-components",
+    "webpack": "webpack --watch --info-verbosity verbose",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -23,26 +24,23 @@
   "license": "MIT License",
   "homepage": "https://github.com/Dicosaedrique/ProjetDictee#readme",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
+    "@babel/cli": "7.1.0",
+    "@babel/core": "7.1.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.2",
     "electron": "^8.0.1",
-    "electron-builder": "^22.3.2"
+    "electron-builder": "^22.3.2",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "electron-settings": "^3.2.0",
+    "global": "^4.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-router": "^5.1.2"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ]
+    "react-router": "^5.1.2",
+    "webpack": "^4.43.0"
   },
   "build": {
     "appId": "com.electron.projet_dictee",
@@ -52,7 +50,9 @@
     },
     "nsis": {
       "oneClick": true
-  	},
-	"asarUnpack" : ["data"]
+    },
+    "asarUnpack": [
+      "data"
+    ]
   }
 }

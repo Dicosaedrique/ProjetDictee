@@ -1,27 +1,28 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 // THIS FILE CONTAINS THE MAIN FUNCTION TO CALL TO START THE APPLICATION
 //
-// Author : Antoine Bouabana (Dicosaedrique) - 2019
+// Author : Antoine Bouabana (Dicosaedrique) - 2020
 //
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 // IMPORT
-const { remote, ipcRenderer, shell } = require('electron');
-const { dialog } = remote;
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { remote } from 'electron';
+
+import ReactApp from 'src/Application';
+import WindowFrame from 'components/WindowFrame';
 
 const debug = remote.getGlobal('debug');
 const __dirapp = remote.getGlobal('__dirapp');
 const __external = remote.getGlobal('__external');
 
-const fs = require('fs');
-
-const APP_NAME = "Projet Dictée (défi en 24h) by Dicosaedrique";
-
 var reactApp;
 
 function promptDirectory(callback = null)
 {
-	dialog.showOpenDialog({
+	remote.dialog.showOpenDialog({
 		properties: ['openDirectory']
 	}).then(({ canceled, filePaths }) =>
 	{
