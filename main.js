@@ -1,6 +1,7 @@
 // MAIN FILE OF THE APPLICATION
 
 const { app, BrowserWindow } = require('electron');
+const { TextToSpeechClient } = require('@google-cloud/text-to-speech');
 const path = require('path');
 const url = require('url');
 
@@ -12,6 +13,7 @@ global.debug = /--debug/.test(process.argv[2]);
 
 global.__dirapp = path.resolve(__dirname);
 global.__external = (NODE_ENV === "production" ? path.resolve(__dirapp, '../app.asar.unpacked') : __dirapp);
+global.textToSpeechClient = new TextToSpeechClient({ keyFilename : path.join(__dirapp, 'google-cloud-credentials.json') });
 
 // window reference
 let mainWindow;
@@ -33,7 +35,8 @@ function initApp()
                 nodeIntegration: true
             },
             center : true,
-			show : true
+			show : true,
+			icon : 'build/logo_dictee.png'
         });
 
         if(debug)

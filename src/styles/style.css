@@ -59,10 +59,10 @@ body {
 	z-index: 9998;
 }
 
-.window-div {
+#window-div {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 32;
     height: 100%;
     width: 100%;
 }
@@ -156,4 +156,17 @@ body {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
+}
+
+.correction-dictee {
+	font-weight: bold;
+	font-size: 60;
+}
+
+del {
+	color: red;
+}
+
+ins {
+	color: red;
 }

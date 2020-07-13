@@ -20,23 +20,6 @@ const __external = remote.getGlobal('__external');
 
 var reactApp;
 
-function promptDirectory(callback = null)
-{
-	remote.dialog.showOpenDialog({
-		properties: ['openDirectory']
-	}).then(({ canceled, filePaths }) =>
-	{
-		if(!canceled && filePaths && filePaths.length === 1)
-		{
-			if(callback) callback(filePaths[0]);
-		}
-	}).catch(err =>
-	{
-		console.log(err);
-		if(callback) callback(undefined);
-	});
-}
-
 // function to start the application
 function start()
 {

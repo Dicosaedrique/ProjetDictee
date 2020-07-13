@@ -112,3 +112,6 @@ data/
 
 # Le bundle JS
 bundle/
+
+# Fichier api key privée de google cloud
+google-cloud-credentials.json

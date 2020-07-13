@@ -4,9 +4,10 @@ import { createMemoryHistory } from 'history';
 
 import Switch from 'components/Switch';
 import Route from 'components/Route';
-
 import HomePage from 'pages/HomePage';
-
+import StartPage from 'pages/StartPage';
+import Controller from 'src/controller';
+import { ControllerProvider } from 'components/ControllerContext';
 
 export default class ReactApp extends React.Component
 {
@@ -14,9 +15,12 @@ export default class ReactApp extends React.Component
 	{
 		super(props);
 
-		this.state = { };
+		this.controller = new Controller();
 
-		this.start();
+		this.state = {
+			ready : false,
+			error : null
+		}
 
 		this.history = createMemoryHistory({
 			initialEntries: ['/'],
@@ -24,24 +28,61 @@ export default class ReactApp extends React.Component
 		});
 	}
 
-	start = () => { window.onresize = () => { this.forceUpdate(); } }
+	componentDidMount = () =>
+	{
+		window.onresize = () => { this.forceUpdate(); }
 
-	save = () => { /* RIEN POUR L'INSTANT */ }
+		this.controller.init()
+		.then(() =>
+		{
+			this.setState({ ready : true });
+		})
+		.catch(err =>
+		{
+			console.error(err);
+			this.setState({ error : "Une erreur est survenue au chargement de l'application : " + JSON.stringify(err) });
+		});
+	}
+
+	save = () => { this.controller.save(); }
 
 	render()
 	{
-		return (
-			<Router history={ this.history }>
+		const { ready, error } = this.state;
 
-				<Switch>
+		if(ready)
+		{
+			return (
+				<ControllerProvider controller={this.controller}>
+					<Router history={this.history}>
 
-					<Route scrollTop exact path="/">
-						<HomePage />
-					</Route>
+						<Switch>
 
-				</Switch>
+							<Route scrollTop exact path="/">
+								<HomePage />
+							</Route>
+							<Route scrollTop exact path="/start">
+								<StartPage />
+							</Route>
 
-			</Router>
-		);
+						</Switch>
+
+					</Router>
+				</ControllerProvider>
+			);
+		}
+		else
+		{
+			return (
+				<>
+					<div style={{ position : 'fixed', top : '50%', left : '50%', right : '50%', bottom : '50%' }}>
+						<div className="spinner-border text-primary" role="status">
+							<span className="sr-only">Chargement...</span>
+						</div>
+					</div>
+					{ error !== null && <p style={{ color : 'red' }}>{error}</p> }
+				</>
+			);
+		}
 	}
 }

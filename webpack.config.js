@@ -36,5 +36,6 @@ module.exports = {
     poll: 1000,
 	ignored: ['node_modules/**', 'build/**', 'bundle/**', 'data/**', 'external/**', 'ressources/**']
   },
-  target : "electron-main"
+  target: "electron-main",
+  node: { __dirname: true }
 };
